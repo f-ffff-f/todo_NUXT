@@ -1,23 +1,29 @@
 export const state = () => ({
-  memos: [],
+  folders: {},
 });
 
 export const mutations = {
-  addMemo(state) {
-    state.memos.push({ title: "제목없음", content: "내용없음" });
+  addFolder(state, folderName) {
+    state.folders = { ...state.folders, [folderName]: [] };
   },
-  updateTitle(state, { title, id }) {
-    state.memos[id].title = title;
+  addMemo(state, folderName) {
+    state.folders[folderName].push({ title: "", content: "" });
   },
-  updateContent(state, { content, id }) {
-    state.memos[id].content = content;
+  deleteMemo(state, { folderName, index }) {
+    state.folders[folderName].splice(index, 1);
+  },
+  updateTitle(state, { folderName, title, id }) {
+    state.folders[folderName][id].title = title;
+  },
+  updateContent(state, { folderName, content, id }) {
+    state.folders[folderName][id].content = content;
   },
 };
 
 export const actions = {};
 
 export const getters = {
-  memosLength: (state) => {
-    return state.memos.length;
+  folders: (state) => {
+    return state.folders;
   },
 };

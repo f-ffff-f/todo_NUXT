@@ -1,24 +1,31 @@
 <template>
   <div>
-    <MemoTitle v-bind:propsdata="param" />
-    <MemoContent v-bind:propsdata="param" />
+    <MemoTitle />
+    <MemoContent />
+    <MemoSubmitBtn />
   </div>
 </template>
 
 <script>
 import MemoTitle from "~/components/MemoTitle.vue";
 import MemoContent from "~/components/MemoContent.vue";
+import MemoSubmitBtn from "~/components/MemoSubmitBtn.vue";
 
 export default {
   components: {
     MemoTitle,
     MemoContent,
-  },
-  data() {
-    return { param: "" };
-  },
-  mounted() {
-    this.param = this.$route.params.id;
+    MemoSubmitBtn,
   },
 };
 </script>
+
+<style scoped>
+div {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  align-items: center;
+  margin: 10px;
+}
+</style>
